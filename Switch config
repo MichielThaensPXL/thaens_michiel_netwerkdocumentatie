@@ -1,1 +1,26 @@
-
+## Switch
+interface Vlan1
+ip address 192.168.1.2 255.255.255.128
+ip default-gateway 192.168.1.1
+line con 0
+password pxl
+login
+line vty 0 4
+login local
+transport input ssh
+line vty 5 15
+login local
+transport input ssh
+## Switch2
+interface Vlan1
+ip address 192.168.1.130 255.255.255.128
+ip default-gateway 192.168.1.129
+line con 0
+password pxl
+login
+line vty 0 4
+login local
+transport input ssh
+line vty 5 15
+login local
+transport input ssh
