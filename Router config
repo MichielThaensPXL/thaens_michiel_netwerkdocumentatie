@@ -1,29 +1,42 @@
-hostname Routerpxl
-enable secret
-username student password 0 pxl
+hostname Switch1
+!
+enable secret pxl
 ip domain-name pxl.be
-interface GigabitEthernet0/0/0
- ip address 192.168.1.1 255.255.255.128
- duplex auto
- speed auto
- ipv6 address 2001:DB8:1234:5678::1/64
+interface Vlan1
+ ip address 192.168.1.2 255.255.255.128
 !
-interface GigabitEthernet0/0/1
- ip address 192.168.1.129 255.255.255.128
- duplex auto
- speed auto
- ipv6 address 2001:DB8:1234:8000::1/64
+ip default-gateway 192.168.1.1
 !
-interface GigabitEthernet0/0/2
- no ip address
- duplex auto
- speed auto
- shutdown
+!
+!
+!
 line con 0
  password pxl
  login
 !
-line aux 0
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+
+
+hostname Switch2
+!
+enable secret pxl
+ip domain-name pxl.be
+interface Vlan1
+ ip address 192.168.1.130 255.255.255.128
+!
+ip default-gateway 192.168.1.129
+!
+!
+!
+!
+line con 0
+ password pxl
+ login
 !
 line vty 0 4
  login local
